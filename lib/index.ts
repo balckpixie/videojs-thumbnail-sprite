@@ -17,11 +17,22 @@ class ThumbnailSprite extends Plugin {
     const sprites = options?.sprites || [];
 
     // 先に player にメソッドをバインド
-    (player as any).updateThumbnailSprites = (opts: ThumbnailSprite.Options) => {
-      if (opts?.sprites) this.setupSprites(opts.sprites);
+    (player as any).thumbnailSprite = (opts: ThumbnailSprite.Options) => {
+      if (this.sprites.length > 0) {
+        this.removeEventHandlers();
+        player.removeClass('vjs-sprite-thumbnails');
+        const previewEl = player.el().querySelector('.vjs-thumbnail-preview');
+        if (previewEl?.parentNode) {
+          previewEl.parentNode.removeChild(previewEl);
+        }
+        this.sprites = [];
+      }
+      if (opts?.sprites) {
+        this.setupSprites(opts.sprites);
+      }
     };
 
-    (player as any).resetThumbnailSprites = () => {
+    (player as any).resetThumbnailSprite = () => {
       this.removeEventHandlers();
       player.removeClass('vjs-sprite-thumbnails');
       const previewEl = player.el().querySelector('.vjs-thumbnail-preview');
