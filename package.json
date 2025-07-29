@@ -2,8 +2,6 @@
   "name": "videojs-thumbnail-sprite-custom",
   "version": "0.1.1",
   "description": "Video.js plugin to display preview image of a video at the point of time when hovering on progress bar",
-  "version": "0.1.1",
-  "description": "Video.js plugin to display preview image of a video at the point of time when hovering on progress bar",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnest:main": "dist/index.es.js",
