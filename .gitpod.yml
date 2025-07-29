@@ -5,6 +5,9 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: npm install
+  - init: |
+      yarn install
+      yarn add --dev @rollup/plugin-json
+    command: yarn build
 
 
