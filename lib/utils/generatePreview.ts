@@ -1,13 +1,17 @@
 import videojs from 'video.js';
 import TS from '../index';
+import ThumbnailSprite from '../index';
 
 import applyStyle from './applyStyle';
 
-function generatePreview(
-  player: videojs.Player,
-  controls: TS.IIndexableComponent,
-  sprites: Array<TS.Sprite>
-): void {
+// function generatePreview(
+//   player: videojs.Player,
+//   controls: TS.IIndexableComponent,
+//   sprites: Array<TS.Sprite>
+// ): void {
+function generatePreview(player: videojs.Player, controls: TS.IIndexableComponent, pluginInstance: ThumbnailSprite): void {
+  // プラグインインスタンスから最新のスプライトデータを取得
+  const sprites = pluginInstance.options.sprites;
   const dom = videojs.dom;
   let sprite: TS.Sprite;
   // 3-dimension approach
