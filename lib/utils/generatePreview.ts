@@ -13,6 +13,11 @@ function generatePreview(player: videojs.Player, controls: TS.IIndexableComponen
   // プラグインインスタンスから最新のスプライトデータを取得
   const sprites = pluginInstance.options.sprites;
   const dom = videojs.dom;
+
+  if (!sprites || sprites.length === 0) {
+    return; // 何もスタイルを当てない
+  }
+
   let sprite: TS.Sprite;
   // 3-dimension approach
   let hoverPoint: number = -1;  // which point of time currently hovering

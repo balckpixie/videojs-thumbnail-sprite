@@ -85,7 +85,42 @@ private _processSprites(): void {
     // initializeThumbnailSpriteを再度呼び出す必要はありません。
     // イベントリスナーは既に登録されており、generatePreviewは最新のthis.options.spritesを参照します。
   }
+  
+  /**
+   * サムネイルスプライトを初期化（データのみクリア）。
+   * UIやイベントリスナーは維持される。
+   */
+  public resetSprites(): void {
+    // 内部のスプライトデータを空に
+    this.options.sprites = [];
 
+    // 処理ロジック上も「スプライトなし」と認識させるため再実行
+    this._processSprites();
+
+    // これで generatePreview などは「表示すべきスプライトがない」と判断し、
+    // プレビューは自然に表示されなくなる
+
+    // --- サムネイル背景をクリア ---
+    const progressCtrl = (this.player as any).controlBar.progressControl;
+    if (progressCtrl && progressCtrl.seekBar && progressCtrl.seekBar.mouseTimeDisplay) {
+      const timeTooltip = progressCtrl.seekBar.mouseTimeDisplay.timeTooltip;
+      if (timeTooltip) {
+        const timeTooltipEl = timeTooltip.el() as HTMLElement;
+        if (timeTooltipEl) {
+          // 背景関連のCSSを消す
+          timeTooltipEl.style.backgroundImage = '';
+          timeTooltipEl.style.backgroundRepeat = '';
+          timeTooltipEl.style.backgroundPosition = '';
+          timeTooltipEl.style.backgroundSize = '';
+          timeTooltipEl.style.width = '';
+          timeTooltipEl.style.height = '';
+          timeTooltipEl.style.top = '';
+          timeTooltipEl.style.margin = '';
+          // 色や枠線は残したいなら削除しなくてもOK
+        }
+      }
+    }
+  }
 }
 
 // 'thumbnailSprite' という名前でプラグインをVideo.jsに登録

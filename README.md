@@ -19,6 +19,7 @@ Video.js plugin to display preview image of a video at the point of time when ho
   - Rules to follow
 - Contribution
 - License
+- Build
 
 ## Features
 - Easy to use
@@ -138,3 +139,7 @@ Fork the repository, make changes, commit your work, and make Pull Request.
 
 ## License
 [MIT Lisence](https://github.com/cadenzah/videojs-thumbnail-sprite/blob/master/LICENSE)
+
+## Build
+npm install
+npm run build
